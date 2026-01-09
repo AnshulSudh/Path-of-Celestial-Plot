@@ -312,7 +312,7 @@ def plot_celestial_path(
         "moon": "moon",
         "mars": "mars",
     
-        # Outer planets (barycenters ONLY in DE421)
+        # Outer planets (barycenters)
         "jupiter": "jupiter barycenter",
         "saturn": "saturn barycenter",
         "uranus": "uranus barycenter",
@@ -400,8 +400,8 @@ def plot_celestial_path(
 
     ax.set_xlim(left, right)
     ax.set_ylim(0, min(90, alts.max() + 5))
-    ax.set_xlabel("Azimuth (deg, unwrapped)")
-    ax.set_ylabel("Altitude (deg)")
+    ax.set_xlabel("Azimuth (deg, unwrapped)", fontsize = 20)
+    ax.set_ylabel("Altitude (deg)", fontsize = 20)
 
     xticks = np.arange(np.floor(left / 5) * 5, np.ceil(right / 5) * 5 + 1, 5)
     ax.set_xticks(xticks)
@@ -409,7 +409,7 @@ def plot_celestial_path(
     ax.grid(True, linestyle="--", alpha=0.5)
     ax.set_title(
         f"{object_name} — {date_str} ({day_mode}→{day_mode}, UTC)\n"
-        f"lat {latitude:.2f}°, lon {longitude:.2f}°"
+        f"lat {latitude:.2f}°, lon {longitude:.2f}°", fontsize = 25
     )
 
     for az, alt, t in zip(az_un, alts, t_vis):
@@ -504,9 +504,9 @@ def plot_analemma(object_name, latitude, longitude, year, sample_time_utc=(12, 0
     sc = ax.scatter(az_un, alts, c=np.arange(len(alts)), cmap="gist_rainbow", s=22)
     ax.plot(az_un, alts, alpha=0.4)
 
-    ax.set_xlabel("Azimuth (deg, unwrapped)")
-    ax.set_ylabel("Altitude (deg)")
-    ax.set_title(f"{object_name} Analemma — {year}")
+    ax.set_xlabel("Azimuth (deg, unwrapped)", fontsize = 20)
+    ax.set_ylabel("Altitude (deg)", fontsize = 20)
+    ax.set_title(f"{object_name} Analemma — {year}", fontsize = 25)
     ax.grid(True, linestyle="--", alpha=0.5)
     plt.colorbar(sc, ax=ax, label="Days Since the Start ")
     plt.tight_layout()
@@ -565,6 +565,7 @@ if __name__ == "__main__":
     #plot_celestial_path("Venus", lat, lon, date, day_mode="midnight")
     #plot_celestial_path("Venus", lat, lon, date, day_mode="midnight")
     #plot_celestial_path("Jupiter", lat, lon, date, day_mode="noon")
+    #plot_celestial_path("Saturn", lat, lon, date, day_mode="midnight")
 
     #plot_analemma("Sun", lat, lon, 2025, sample_time_utc=(5, 0))
     #plot_analemma("Venus", lat, lon, 2025, sample_time_utc=(12, 0), period=1000)
